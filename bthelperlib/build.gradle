@@ -27,7 +27,7 @@ publish {
     userOrg = 'charlezz'
     groupId = 'com.twodep.www'
     artifactId = 'bluetooth-helper'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
     desc = 'Bluetooth Library'
     website = 'https://github.com/Charles/BluetoothHelper'
     issueTracker = "${website}/issues"
