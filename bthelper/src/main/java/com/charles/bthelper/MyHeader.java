@@ -1,4 +1,4 @@
-package com.twodep.www.bthelperlib;
+package com.charles.bthelper;
 
 import java.nio.ByteBuffer;
 
@@ -11,8 +11,8 @@ public class MyHeader {
     public static final int TYPE_STRING = 1;
     public static final int TYPE_JSON = 2;
     private static final String TAG = "MyHeader";
-    private int type;//0~127
-    private int capacity;//0~2147483647
+    private int type;
+    private int capacity;
 
     public MyHeader(int type, int capacity) {
         this.type = type;
@@ -41,8 +41,8 @@ public class MyHeader {
 
     public byte[] getHeaderBytes() {
         ByteBuffer bb = ByteBuffer.allocate(8);
-        bb.put((byte) type);//타입
-        bb.put(ByteBuffer.allocate(4).putInt(capacity).array());//데이터 사이즈
+        bb.put((byte) type);
+        bb.put(ByteBuffer.allocate(4).putInt(capacity).array());
         bb.put((byte) 0);
         bb.put((byte) 0);
         bb.put((byte) 0);

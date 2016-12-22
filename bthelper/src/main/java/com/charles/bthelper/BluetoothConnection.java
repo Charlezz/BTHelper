@@ -1,4 +1,4 @@
-package com.twodep.www.bthelperlib;
+package com.charles.bthelper;
 
 /**
  * Created by Charles on 2015. 8. 23..
@@ -141,12 +141,6 @@ public class BluetoothConnection {
         mConnectedThread = new ConnectedThread(socket, socketType);
         mConnectedThread.start();
 
-//        Message msg = mHandler.obtainMessage(BluetoothHelper.MESSAGE_DEVICE_NAME);
-//        Bundle bundle = new Bundle();
-//        bundle.putString(BluetoothHelper.DEVICE_NAME, device.getName());
-//        msg.setData(bundle);
-//        mHandler.sendMessage(msg);
-
         setState(STATE_CONNECTED);
     }
 
@@ -202,11 +196,7 @@ public class BluetoothConnection {
 
 
     private void connectionFailed() {
-//        Message msg = mHandler.obtainMessage(BluetoothHelper.MESSAGE_TOAST);
-//        Bundle bundle = new Bundle();
-//        bundle.putString(BluetoothHelper.TOAST, "connetion failed");
-//        msg.setData(bundle);
-//        mHandler.sendMessage(msg);
+
         if (mConnectThread != null) {
             mConnectThread.cancel();
             mConnectThread = null;
@@ -222,18 +212,10 @@ public class BluetoothConnection {
             mAcceptThread = null;
         }
         mHandler.obtainMessage(BluetoothHelper.MESSAGE_STATE_CHANGE, STATE_CONNECTION_FAILED, id).sendToTarget();
-//        BluetoothConnection.this.stop();
     }
 
 
     private void connectionLost() {
-//        Message msg = mHandler.obtainMessage(BluetoothHelper.MESSAGE_TOAST);
-//        Bundle bundle = new Bundle();
-//        bundle.putString(BluetoothHelper.TOAST, "connection lost");
-//        msg.setData(bundle);
-//        mHandler.sendMessage(msg);
-
-//        BluetoothConnection.this.stop();
         BluetoothConnection.this.stopByAccident();
     }
 
@@ -396,7 +378,6 @@ public class BluetoothConnection {
             ByteBuffer dataBuffer = null;
             while (true) {
                 headerBuffer.clear();
-                Log.e(TAG, "버퍼클리어");
                 mHeader = null;
                 if (dataBuffer != null) {
                     dataBuffer.clear();
@@ -407,31 +388,22 @@ public class BluetoothConnection {
                         singleByte = mmInStream.read();
                         Log.e(TAG, "singlebyte:" + singleByte);
                         headerBuffer.put((byte) singleByte);
-                        if (headerBuffer.position() == 8) {//8바이트 헤더 체크 부분
-                            Log.e(TAG, "헤더 바이트 8바이트");
+                        if (headerBuffer.position() == 8) {
                             mHeader = new MyHeader(headerBuffer.array());
                             break;
                         }
                     }
                     if (mHeader == null) {
-                        //헤더에러
                         write("error:check your header".getBytes());
                         cancel();
                         return;
                     }
-                    //헤더에 적힌 용량만큼 바이츠 더 받음
-                    Log.e(TAG, "mHeader.getCapacity():" + mHeader.getCapacity());
                     dataBuffer = ByteBuffer.allocate(mHeader.getCapacity());
                     for (int i = mHeader.getCapacity(); i > 0; i--) {
                         singleByte = mmInStream.read();
                         dataBuffer.put((byte) singleByte);
                     }
 
-
-                    Log.e(TAG, "데이터 정상적으로 받음");
-                    Log.e(TAG, "type:" + mHeader.getType());
-                    //알맹이 데이터 핸들러로 전송
-                    Log.e(TAG, "id:" + id);
                     mHandler.obtainMessage(BluetoothHelper.MESSAGE_READ, mHeader.getType(), mHeader.getCapacity(), new ReceivedBytes(id, dataBuffer.array(), mDevice)).sendToTarget();
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);

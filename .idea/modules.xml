@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BTHelper.iml" filepath="$PROJECT_DIR$/BTHelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bthelperlib/bthelperlib.iml" filepath="$PROJECT_DIR$/bthelperlib/bthelperlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bthelper/bthelper.iml" filepath="$PROJECT_DIR$/bthelper/bthelper.iml" />
     </modules>
   </component>
 </project>

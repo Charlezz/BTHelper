@@ -1,4 +1,4 @@
-package com.twodep.www.bthelperlib;
+package com.charles.bthelper;
 
 import android.bluetooth.BluetoothDevice;
 

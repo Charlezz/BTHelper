@@ -1,1 +1,1 @@
-include ':app', ':bthelperlib'
+include ':app', ':bthelper'

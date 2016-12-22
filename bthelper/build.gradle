@@ -20,19 +20,17 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.0'
 }
 publish {
     userOrg = 'charlezz'
-    groupId = 'com.twodep.www'
-    artifactId = 'bluetooth-helper'
-    publishVersion = '0.0.2'
+    groupId = 'com.charles.bthelper'
+    artifactId = 'bthelper'
+    publishVersion = '0.0.1-alpha'
     desc = 'Bluetooth Library'
     website = 'https://github.com/Charles/BluetoothHelper'
-    issueTracker = "${website}/issues"
-    repository = "${website}.git"
-    //ac5212e3be7ca26e26c2786ddb1c96d8c1049a11
+    //APIKEY
+    // ac5212e3be7ca26e26c2786ddb1c96d8c1049a11
 //    ./gradlew clean build bintrayUpload -PbintrayUser=charlezz -PbintrayKey=ac5212e3be7ca26e26c2786ddb1c96d8c1049a11 -PdryRun=false
 
 }

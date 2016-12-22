@@ -12,8 +12,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.twodep.www.bthelperlib.BluetoothHelper;
-import com.twodep.www.bthelperlib.HelperListener;
+import com.charles.bthelper.BluetoothHelper;
+import com.charles.bthelper.HelperListener;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
